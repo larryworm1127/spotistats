@@ -1,7 +1,7 @@
 import os
 import uuid
 
-from django.shortcuts import redirect, HttpResponse
+from django.shortcuts import redirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from spotipy import Spotify
@@ -16,14 +16,15 @@ def session_cache_path(session):
     return caches_folder + session.get('uuid')
 
 
-def index(request):
+@api_view(['GET'])
+def auth(request):
     if not request.session.get('uuid'):
         request.session['uuid'] = str(uuid.uuid4())
 
     auth_manager = SpotifyOAuth(
         scope='user-read-currently-playing user-top-read',
         client_secret='4aa24394c2fb45958a4e7d6f3f5eef40',
-        redirect_uri='http://127.0.0.1:8000/',
+        redirect_uri='http://127.0.0.1:8000/api/auth',
         cache_path=session_cache_path(request.session),
         show_dialog=True
     )
@@ -34,17 +35,10 @@ def index(request):
 
     if not auth_manager.get_cached_token():
         auth_url = auth_manager.get_authorize_url()
-        return HttpResponse(f'<h2><a href="{auth_url}">Sign in</a></h2>')
+        return Response({"auth_url": auth_url})
 
     spotify = Spotify(auth_manager=auth_manager)
-    return HttpResponse(
-        f'<h2>Hi {spotify.me()["display_name"]}, '
-        f'<small><a href="/sign_out">[sign out]<a/></small></h2>'
-        f'<a href="/api/playlists">my playlists</a> | '
-        f'<a href="/api/top_artists">top artists</a> | '
-        f'<a href="/api/top_tracks">top tracks</a> | '
-        f'<a href="/api/current_user">me</a>'
-    )
+    return Response({"name": spotify.me()["display_name"]})
 
 
 def sign_out(request):

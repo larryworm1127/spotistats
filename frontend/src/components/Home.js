@@ -8,7 +8,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -19,8 +18,15 @@ import Badge from "@material-ui/core/Badge";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import { mainListItems, secondaryListItems } from "./listItems";
+import BarChartIcon from "@material-ui/icons/BarChart";
 import TopArtists from "./TopArtists";
+import CollapseListItem from "./CollapseListItem";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import List from "@material-ui/core/List";
+import PeopleIcon from "@material-ui/icons/People";
 
 
 function Copyright() {
@@ -93,9 +99,17 @@ class Home extends React.Component {
             </IconButton>
           </div>
           <Divider/>
-          <List>{mainListItems}</List>
-          <Divider/>
-          <List>{secondaryListItems}</List>
+          <List>
+            <ListItem button>
+              <ListItemIcon>
+                <PeopleIcon/>
+              </ListItemIcon>
+              <ListItemText primary="Profile"/>
+            </ListItem>
+
+            <CollapseListItem label="Top Artists" icon={<DashboardIcon/>}/>
+            <CollapseListItem label="Top Tracks" icon={<BarChartIcon/>}/>
+          </List>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.appBarSpacer}/>

@@ -27,6 +27,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
 import PeopleIcon from "@material-ui/icons/People";
+import TopTracks from "./TopTracks";
 
 
 function Copyright() {
@@ -63,13 +64,25 @@ class Home extends React.Component {
   };
 
   getSubComponent = () => {
-
-  }
+    switch (this.state.selectedIndex) {
+      case 1:
+        return <TopArtists timeRange="Short Term"/>;
+      case 2:
+        return <TopArtists timeRange="Medium Term"/>;
+      case 3:
+        return <TopArtists timeRange="Long Term"/>;
+      case 4:
+        return <TopTracks timeRange="Short Term"/>;
+      case 5:
+        return <TopTracks timeRange="Medium Term"/>;
+      case 6:
+        return <TopTracks timeRange="Long Term"/>;
+    }
+  };
 
   render() {
     const { classes } = this.props;
     const { open, selectedIndex } = this.state;
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
     return (
       <div className={classes.root}>
@@ -86,7 +99,7 @@ class Home extends React.Component {
               <MenuIcon/>
             </IconButton>
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-              Dashboard
+              Spotistats
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
@@ -144,20 +157,8 @@ class Home extends React.Component {
           <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
-                <Paper className={fixedHeightPaper}>
-                  <TopArtists timeRange="Short Term"/>
-                </Paper>
-              </Grid>
-
-              <Grid item xs={12}>
                 <Paper className={classes.paper}>
-                  <TopArtists timeRange="Medium Term"/>
-                </Paper>
-              </Grid>
-
-              <Grid item xs={12}>
-                <Paper className={fixedHeightPaper}>
-                  <TopArtists timeRange="Long Term"/>
+                  {this.getSubComponent()}
                 </Paper>
               </Grid>
             </Grid>

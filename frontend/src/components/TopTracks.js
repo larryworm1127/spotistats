@@ -6,25 +6,28 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import Title from "./Title";
+import { getTopTracks } from "../actions";
 
-
-// Generate Order Data
-function createData(id, date, name, shipTo, paymentMethod, amount) {
-  return { id, date, name, shipTo, paymentMethod, amount };
-}
-
-const rows = [
-  createData(0, "16 Mar, 2019", "Elvis Presley", "Tupelo, MS", "VISA ⠀•••• 3719", 312.44),
-  createData(1, "16 Mar, 2019", "Paul McCartney", "London, UK", "VISA ⠀•••• 2574", 866.99),
-  createData(2, "16 Mar, 2019", "Tom Scholz", "Boston, MA", "MC ⠀•••• 1253", 100.81),
-  createData(3, "16 Mar, 2019", "Michael Jackson", "Gary, IN", "AMEX ⠀•••• 2000", 654.39),
-  createData(4, "15 Mar, 2019", "Bruce Springsteen", "Long Branch, NJ", "VISA ⠀•••• 5919", 212.79),
-];
 
 class TopTracks extends React.Component {
 
+  state = {
+    tracks: []
+  };
+
+  componentDidMount() {
+    getTopTracks(this);
+  }
+
+  millisToMinutesAndSeconds = (millis) => {
+    const minutes = Math.floor(millis / 60000);
+    const seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+  }
+
   render() {
     const { timeRange } = this.props;
+    const { tracks } = this.state;
 
     return (
       <React.Fragment>
@@ -32,21 +35,27 @@ class TopTracks extends React.Component {
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Date</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Ship To</TableCell>
-              <TableCell>Payment Method</TableCell>
-              <TableCell align="right">Sale Amount</TableCell>
+              <TableCell>Rank</TableCell>
+              <TableCell>Song Name</TableCell>
+              <TableCell>Artist Name</TableCell>
+              <TableCell>Album Name</TableCell>
+              <TableCell>Song Length</TableCell>
+              <TableCell>Popularity</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell>{row.date}</TableCell>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.shipTo}</TableCell>
-                <TableCell>{row.paymentMethod}</TableCell>
-                <TableCell align="right">{row.amount}</TableCell>
+            {tracks.map((track, index) => (
+              <TableRow key={track.id}>
+                <TableCell>{index + 1}</TableCell>
+                <TableCell>{track.name}</TableCell>
+                <TableCell>
+                  {track.artists.reduce((acc, curr) => {
+                    return (acc === "") ? curr.name : `${acc}, ${curr.name}`;
+                  }, "")}
+                </TableCell>
+                <TableCell>{track.album.name}</TableCell>
+                <TableCell>{this.millisToMinutesAndSeconds(parseInt(track.duration_ms))}</TableCell>
+                <TableCell>{track.popularity}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -58,6 +67,6 @@ class TopTracks extends React.Component {
 
 TopTracks.propTypes = {
   timeRange: PropTypes.string.isRequired
-}
+};
 
 export default TopTracks;

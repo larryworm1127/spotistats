@@ -6,28 +6,18 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import Title from "./Title";
-import { getTopTracks } from "../actions";
 
 
 class TopTracks extends React.Component {
-
-  state = {
-    tracks: []
-  };
-
-  componentDidMount() {
-    getTopTracks(this);
-  }
 
   millisToMinutesAndSeconds = (millis) => {
     const minutes = Math.floor(millis / 60000);
     const seconds = ((millis % 60000) / 1000).toFixed(0);
     return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-  }
+  };
 
   render() {
-    const { timeRange } = this.props;
-    const { tracks } = this.state;
+    const { timeRange, tracks } = this.props;
 
     return (
       <React.Fragment>
@@ -66,7 +56,8 @@ class TopTracks extends React.Component {
 }
 
 TopTracks.propTypes = {
-  timeRange: PropTypes.string.isRequired
+  timeRange: PropTypes.string.isRequired,
+  tracks: PropTypes.array.isRequired
 };
 
 export default TopTracks;

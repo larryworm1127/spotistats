@@ -28,6 +28,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
 import PeopleIcon from "@material-ui/icons/People";
 import TopTracks from "./TopTracks";
+import { getTopArtists, getTopTracks } from "../actions";
 
 
 function Copyright() {
@@ -48,7 +49,10 @@ class Home extends React.Component {
 
   state = {
     open: true,
-    selectedIndex: 0
+    selectedIndex: 0,
+    tracks: [],
+    artists: [],
+    loaded: false
   };
 
   handleDrawerClose = () => {
@@ -60,23 +64,43 @@ class Home extends React.Component {
   };
 
   handleListItemClick = (event, index) => {
-    this.setState({ selectedIndex: index });
+    this.setState({ selectedIndex: index, loaded: false });
   };
 
   getSubComponent = () => {
-    switch (this.state.selectedIndex) {
+    const { tracks, artists, selectedIndex, loaded } = this.state
+
+    switch (selectedIndex) {
       case 1:
-        return <TopArtists timeRange="Short Term"/>;
+        if (!loaded) {
+          getTopArtists(this, "short_term");
+        }
+        return <TopArtists timeRange="Short Term" artists={artists}/>;
       case 2:
-        return <TopArtists timeRange="Medium Term"/>;
+        if (!loaded) {
+          getTopArtists(this, "medium_term");
+        }
+        return <TopArtists timeRange="Medium Term" artists={artists}/>;
       case 3:
-        return <TopArtists timeRange="Long Term"/>;
+        if (!loaded) {
+          getTopArtists(this, "long_term");
+        }
+        return <TopArtists timeRange="Long Term" artists={artists}/>;
       case 4:
-        return <TopTracks timeRange="Short Term"/>;
+        if (!loaded) {
+          getTopTracks(this, "short_term");
+        }
+        return <TopTracks timeRange="Short Term" tracks={tracks}/>;
       case 5:
-        return <TopTracks timeRange="Medium Term"/>;
+        if (!loaded) {
+          getTopTracks(this, "medium_term");
+        }
+        return <TopTracks timeRange="Medium Term" tracks={tracks}/>;
       case 6:
-        return <TopTracks timeRange="Long Term"/>;
+        if (!loaded) {
+          getTopTracks(this, "long_term");
+        }
+        return <TopTracks timeRange="Long Term" tracks={tracks}/>;
     }
   };
 

@@ -6,22 +6,12 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import Title from "./Title";
 import PropTypes from "prop-types";
-import { getTopArtists } from "../actions";
 
 
 class TopArtists extends React.Component {
 
-  state = {
-    artists: []
-  };
-
-  componentDidMount() {
-    getTopArtists(this);
-  }
-
   render() {
-    const { timeRange } = this.props;
-    const { artists } = this.state;
+    const { timeRange, artists } = this.props;
 
     return (
       <React.Fragment>
@@ -54,7 +44,8 @@ class TopArtists extends React.Component {
 }
 
 TopArtists.propTypes = {
-  timeRange: PropTypes.string.isRequired
+  timeRange: PropTypes.string.isRequired,
+  artists: PropTypes.array.isRequired
 };
 
 export default TopArtists;

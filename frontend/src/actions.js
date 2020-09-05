@@ -21,37 +21,39 @@ export const auth = (comp) => {
 };
 
 
-export const getTopArtists = (comp) => {
-  fetch("api/top_artists")
+export const getTopArtists = (comp, timeRange) => {
+  fetch(`api/top_artists/${timeRange}`)
     .then(res => {
       if (res.status === 200) {
         return res.json();
       }
     })
     .then(json => {
-      console.log(json)
+      console.log(json);
       if (json) {
         comp.setState({
-          artists: [...json.items]
-        })
+          artists: [...json.items],
+          loaded: true
+        });
       }
-    })
-}
+    });
+};
 
 
-export const getTopTracks = (comp) => {
-  fetch("api/top_tracks")
+export const getTopTracks = (comp, timeRange) => {
+  fetch(`api/top_tracks/${timeRange}`)
     .then(res => {
       if (res.status === 200) {
         return res.json();
       }
     })
     .then(json => {
-      console.log(json)
+      console.log(json);
       if (json) {
         comp.setState({
-          tracks: [...json.items]
-        })
+          tracks: [...json.items],
+          loaded: true
+        });
       }
-    })
-}
+    });
+};

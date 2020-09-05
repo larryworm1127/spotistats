@@ -1,6 +1,7 @@
 import os
 import uuid
 
+from django.http import Http404
 from django.shortcuts import redirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -10,6 +11,7 @@ from spotipy.oauth2 import SpotifyOAuth
 from spotistats.settings import BASE_DIR
 
 caches_folder = f'{BASE_DIR}/.django_session/'
+time_ranges = ['short_term', 'medium_term', 'long_term']
 
 
 def session_cache_path(session):
@@ -62,22 +64,28 @@ def playlists(request):
 
 
 @api_view(['GET'])
-def top_artists(request):
+def top_artists(request, time_range):
+    if time_range not in time_ranges:
+        raise Http404("Time range is not valid")
+
     auth_manager = SpotifyOAuth(cache_path=session_cache_path(request.session))
     if not auth_manager.get_cached_token():
         return redirect('index')
     spotify = Spotify(auth_manager=auth_manager)
-    artist = spotify.current_user_top_artists()
+    artist = spotify.current_user_top_artists(time_range=time_range)
     return Response(artist)
 
 
 @api_view(['GET'])
-def top_tracks(request):
+def top_tracks(request, time_range):
+    if time_range not in time_ranges:
+        raise Http404("Time range is not valid")
+
     auth_manager = SpotifyOAuth(cache_path=session_cache_path(request.session))
     if not auth_manager.get_cached_token():
         return redirect('index')
     spotify = Spotify(auth_manager=auth_manager)
-    track = spotify.current_user_top_tracks()
+    track = spotify.current_user_top_tracks(time_range=time_range)
     return Response(track)
 
 

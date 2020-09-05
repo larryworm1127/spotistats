@@ -77,4 +77,7 @@ export const styles = (theme) => ({
   fixedHeight: {
     height: 240,
   },
+  nested: {
+    paddingLeft: theme.spacing(4),
+  },
 });

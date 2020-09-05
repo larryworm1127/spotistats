@@ -46,7 +46,8 @@ function Copyright() {
 class Home extends React.Component {
 
   state = {
-    open: true
+    open: true,
+    selectedIndex: 0
   };
 
   handleDrawerClose = () => {
@@ -57,9 +58,17 @@ class Home extends React.Component {
     this.setState({ open: true });
   };
 
+  handleListItemClick = (event, index) => {
+    this.setState({ selectedIndex: index });
+  };
+
+  getSubComponent = () => {
+
+  }
+
   render() {
     const { classes } = this.props;
-    const { open } = this.state;
+    const { open, selectedIndex } = this.state;
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
     return (
@@ -86,6 +95,7 @@ class Home extends React.Component {
             </IconButton>
           </Toolbar>
         </AppBar>
+
         <Drawer
           variant="permanent"
           classes={{
@@ -100,17 +110,34 @@ class Home extends React.Component {
           </div>
           <Divider/>
           <List>
-            <ListItem button>
+            <ListItem
+              button
+              selected={selectedIndex === 0}
+              onClick={(event) => this.handleListItemClick(event, 0)}
+            >
               <ListItemIcon>
                 <PeopleIcon/>
               </ListItemIcon>
               <ListItemText primary="Profile"/>
             </ListItem>
 
-            <CollapseListItem label="Top Artists" icon={<DashboardIcon/>}/>
-            <CollapseListItem label="Top Tracks" icon={<BarChartIcon/>}/>
+            <CollapseListItem
+              label="Top Artists"
+              icon={<DashboardIcon/>}
+              onSelectClick={this.handleListItemClick}
+              selectedIndex={selectedIndex}
+              indices={[1, 2, 3]}
+            />
+            <CollapseListItem
+              label="Top Tracks"
+              icon={<BarChartIcon/>}
+              onSelectClick={this.handleListItemClick}
+              selectedIndex={selectedIndex}
+              indices={[4, 5, 6]}
+            />
           </List>
         </Drawer>
+
         <main className={classes.content}>
           <div className={classes.appBarSpacer}/>
 

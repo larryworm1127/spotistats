@@ -23,7 +23,6 @@ def auth(request):
 
     auth_manager = SpotifyOAuth(
         scope='user-read-currently-playing user-top-read',
-        client_secret='4aa24394c2fb45958a4e7d6f3f5eef40',
         redirect_uri='http://127.0.0.1:8000/api/auth',
         cache_path=session_cache_path(request.session),
         show_dialog=True

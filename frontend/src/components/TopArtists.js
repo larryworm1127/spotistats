@@ -16,7 +16,7 @@ class TopArtists extends React.Component {
     return (
       <React.Fragment>
         <Title>Top Artists - {timeRange}</Title>
-        <Table size="small">
+        <Table>
           <TableHead>
             <TableRow>
               <TableCell>Rank</TableCell>

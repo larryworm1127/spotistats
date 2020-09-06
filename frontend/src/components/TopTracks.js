@@ -22,7 +22,7 @@ class TopTracks extends React.Component {
     return (
       <React.Fragment>
         <Title>Top Tracks - {timeRange}</Title>
-        <Table size="small">
+        <Table>
           <TableHead>
             <TableRow>
               <TableCell>Rank</TableCell>

@@ -125,7 +125,7 @@ class Home extends React.Component {
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
               Spotistats
             </Typography>
-            <Link href="/api/signout" color="inherit">
+            <Link href="/api/sign_out" color="inherit">
               Sign Out
             </Link>
             <IconButton color="inherit">

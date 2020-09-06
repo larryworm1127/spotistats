@@ -20,11 +20,13 @@
     "@material-ui/styles": "^4.10.0",
     "babel-loader": "^8.1.0",
     "clsx": "^1.1.1",
+    "css-loader": "^4.2.2",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-uid": "^2.3.0",
+    "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   }

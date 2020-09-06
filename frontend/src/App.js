@@ -3,7 +3,7 @@ import { auth } from "./actions";
 import Home from "./components/Home";
 import { createMuiTheme } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import Login from "./components/Login";
 
 
 const theme = createMuiTheme({
@@ -32,10 +32,11 @@ class App extends React.Component {
   }
 
   render() {
+    const { authUrl } = this.state;
+
     return (
       <ThemeProvider theme={theme}>
-        <CssBaseline/>
-        <Home/>
+        {(authUrl) ? <Login authUrl={authUrl}/> : <Home/>}
       </ThemeProvider>
     );
   }

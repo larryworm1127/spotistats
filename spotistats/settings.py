@@ -140,4 +140,5 @@ STATIC_URL = '/static/'
 
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+if not DEBUG:
+    django_heroku.settings(locals())

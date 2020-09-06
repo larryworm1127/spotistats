@@ -81,3 +81,18 @@ export const styles = (theme) => ({
     paddingLeft: theme.spacing(4),
   },
 });
+
+
+export const loginStyles = (theme) => ({
+  root: {
+    display: "flex",
+  },
+  body: {
+    backgroundColor: "#333",
+    msFlexPack: "center",
+    justifyContent: "center",
+    color: "#fff",
+    textShadow: "0, .05rem .1rem rgba(0, 0, 0, .5)",
+    boxShadow: "inset 0 0 5rem rgba(0, 0, 0, .5)"
+  }
+})

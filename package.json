@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "postinstall": "npm build --prefix frontend"
+    "heroku-postbuild": "npm build --prefix frontend"
   },
   "repository": {
     "type": "git",

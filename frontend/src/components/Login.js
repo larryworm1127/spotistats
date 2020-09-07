@@ -1,21 +1,26 @@
-import React from "react";
-import './Login.css'
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import './Login.css';
+import { loginStyles } from './style';
+import { Typography, withStyles } from '@material-ui/core';
 
 
 class Login extends React.Component {
 
   render() {
-    const { authUrl } = this.props;
+    const { authUrl, classes } = this.props;
 
     return (
-      <div className="text-center">
-        <div className="cover-container d-flex h-100 p-3 mx-auto flex-column">
-          <h1 className="cover-heading">Spotistats</h1>
-          <p className="lead">
+      <div className={classes.bodyContainer}>
+        <div className={classes.coverContainer}>
+          <Typography component="h1" className={classes.coverHeading}>
+            Spotistats
+          </Typography>
+          <Typography component="p" className={classes.lead}>
             Spotistats is a simple website for viewing top artists/tracks you have been listening to on Spotify.
-          </p>
-          <p className="lead">
-            <a href={authUrl} className="btn btn-lg btn-secondary">Sign In</a>
+          </Typography>
+          <p className={classes.lead}>
+            <Button size="large" href={authUrl} className={classes.signInButton}>Sign In</Button>
           </p>
         </div>
       </div>
@@ -23,4 +28,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withStyles(loginStyles)(Login);

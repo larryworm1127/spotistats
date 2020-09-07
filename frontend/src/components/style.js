@@ -1,22 +1,22 @@
-const drawerWidth = 240
+const drawerWidth = 240;
 
 export const styles = (theme) => ({
   root: {
-    display: "flex",
+    display: 'flex',
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
   },
   toolbarIcon: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    padding: "0 8px",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: '0 8px',
     ...theme.mixins.toolbar,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(["width", "margin"], {
+    transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
@@ -24,7 +24,7 @@ export const styles = (theme) => ({
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
+    transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -33,36 +33,36 @@ export const styles = (theme) => ({
     marginRight: 36,
   },
   menuButtonHidden: {
-    display: "none",
+    display: 'none',
   },
   title: {
     flexGrow: 1,
   },
   drawerPaper: {
-    position: "relative",
-    whiteSpace: "nowrap",
+    position: 'relative',
+    whiteSpace: 'nowrap',
     width: drawerWidth,
-    transition: theme.transitions.create("width", {
+    transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   drawerPaperClose: {
-    overflowX: "hidden",
-    transition: theme.transitions.create("width", {
+    overflowX: 'hidden',
+    transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     width: theme.spacing(7),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up('sm')]: {
       width: theme.spacing(9),
     },
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    height: "100vh",
-    overflow: "auto",
+    height: '100vh',
+    overflow: 'auto',
   },
   container: {
     paddingTop: theme.spacing(4),
@@ -70,9 +70,9 @@ export const styles = (theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
   },
   fixedHeight: {
     height: 240,
@@ -84,15 +84,34 @@ export const styles = (theme) => ({
 
 
 export const loginStyles = (theme) => ({
-  root: {
-    display: "flex",
+  lead: {
+    fontSize: '1.25rem',
+    fontWeight: 300,
+    marginBottom: '1rem'
   },
-  body: {
-    backgroundColor: "#333",
-    msFlexPack: "center",
-    justifyContent: "center",
-    color: "#fff",
-    textShadow: "0, .05rem .1rem rgba(0, 0, 0, .5)",
-    boxShadow: "inset 0 0 5rem rgba(0, 0, 0, .5)"
+  signInButton: {
+    padding: '.75rem 1.25rem',
+    fontWeight: 700,
+    fontSize: '1.25rem',
+    borderRadius: '.25rem',
+    backgroundColor: '#fff',
+    color: '#333',
+    textTransform: 'none',
+  },
+  coverHeading: {
+    fontSize: '2.5rem',
+    marginBottom: '.5rem',
+    fontWeight: 500,
+    lineHeight: 1.2,
+  },
+  coverContainer: {
+    maxWidth: '42em',
+    marginTop: '10%'
+  },
+  bodyContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    color: '#fff',
+    textAlign: 'center !important'
   }
-})
+});

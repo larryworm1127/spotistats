@@ -1,20 +1,32 @@
-import React from "react";
-import { auth } from "./actions";
-import Home from "./components/Home";
-import { createMuiTheme } from "@material-ui/core";
-import { ThemeProvider } from "@material-ui/styles";
-import Login from "./components/Login";
+import React from 'react';
+import { auth } from './actions';
+import Home from './components/Home';
+import { createMuiTheme } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/styles';
+import Login from './components/Login';
 
 
 const theme = createMuiTheme({
   typography: {
     h2: {
-      fontSize: "1.25rem",
+      fontSize: '1.25rem',
     },
     h6: {
       fontWeight: 500
-    }
-  }
+    },
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
 });
 
 
@@ -24,7 +36,7 @@ class App extends React.Component {
     name: null,
     authUrl: null,
     loaded: false,
-    placeholder: "Loading"
+    placeholder: 'Loading'
   };
 
   componentDidMount() {

@@ -17,7 +17,7 @@ class TopTracks extends React.Component {
   };
 
   render() {
-    const { timeRange, tracks } = this.props;
+    const { timeRange, tracks, useRank } = this.props;
 
     return (
       <React.Fragment>
@@ -57,7 +57,8 @@ class TopTracks extends React.Component {
 
 TopTracks.propTypes = {
   timeRange: PropTypes.string.isRequired,
-  tracks: PropTypes.array.isRequired
+  tracks: PropTypes.array.isRequired,
+  useRank: PropTypes.bool
 };
 
 export default TopTracks;

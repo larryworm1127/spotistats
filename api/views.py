@@ -90,3 +90,12 @@ def current_user(request):
         return redirect('index')
     spotify = Spotify(auth_manager=auth_manager)
     return Response(spotify.current_user())
+
+
+@api_view(['GET'])
+def playlists(request):
+    auth_manager = SpotifyOAuth(cache_path=session_cache_path(request.session))
+    if not auth_manager.get_cached_token():
+        return redirect('index')
+    spotify = Spotify(auth_manager=auth_manager)
+    return Response(spotify.current_user_playlists())

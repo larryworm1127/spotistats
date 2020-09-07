@@ -57,3 +57,21 @@ export const getTopTracks = (comp, timeRange) => {
       }
     });
 };
+
+
+export const getPlaylists = (comp) => {
+  fetch("api/playlists")
+    .then(res => {
+      if (res.status === 200) {
+        return res.json()
+      }
+    })
+    .then(json => {
+      if (json) {
+        comp.setState({
+          playlists: [...json.items],
+          loaded: true
+        })
+      }
+    })
+}

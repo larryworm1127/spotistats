@@ -22,13 +22,14 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import TopArtists from './TopArtists';
 import CollapseListItem from './CollapseListItem';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import List from '@material-ui/core/List';
-import PeopleIcon from '@material-ui/icons/People';
 import TopTracks from './TopTracks';
-import { getTopArtists, getTopTracks } from '../actions';
+import { getPlaylists, getTopArtists, getTopTracks } from '../actions';
+import PlaylistsTable from './PlaylistsTable';
 
 
 function Copyright() {
@@ -52,6 +53,7 @@ class Home extends React.Component {
     selectedIndex: 0,
     tracks: [],
     artists: [],
+    playlists: [],
     loaded: false
   };
 
@@ -68,7 +70,7 @@ class Home extends React.Component {
   };
 
   getSubComponent = () => {
-    const { tracks, artists, selectedIndex, loaded } = this.state;
+    const { tracks, artists, playlists, selectedIndex, loaded } = this.state;
 
     switch (selectedIndex) {
       case 1:
@@ -101,6 +103,11 @@ class Home extends React.Component {
           getTopTracks(this, 'long_term');
         }
         return <TopTracks timeRange="Long Term" tracks={tracks}/>;
+      default:
+        if (!loaded) {
+          getPlaylists(this);
+        }
+        return <PlaylistsTable playlists={playlists}/>;
     }
   };
 
@@ -156,9 +163,9 @@ class Home extends React.Component {
               onClick={(event) => this.handleListItemClick(event, 0)}
             >
               <ListItemIcon>
-                <PeopleIcon/>
+                <PlaylistPlayIcon/>
               </ListItemIcon>
-              <ListItemText primary="Profile"/>
+              <ListItemText primary="Playlists"/>
             </ListItem>
 
             <CollapseListItem

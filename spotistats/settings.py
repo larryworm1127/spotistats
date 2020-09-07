@@ -65,12 +65,6 @@ SESSION_FILE_PATH = './.django_session/'
 if not os.path.exists(SESSION_FILE_PATH):
     os.makedirs(SESSION_FILE_PATH)
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': './.django_cache/',
-    }
-}
 
 TEMPLATES = [
     {

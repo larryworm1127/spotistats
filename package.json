@@ -1,0 +1,19 @@
+{
+  "name": "spotistats",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "postinstall": "npm build --prefix frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larryworm1127/spotistats.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/larryworm1127/spotistats/issues"
+  },
+  "homepage": "https://github.com/larryworm1127/spotistats#readme"
+}

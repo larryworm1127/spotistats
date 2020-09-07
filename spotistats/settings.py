@@ -28,7 +28,9 @@ SECRET_KEY = 'a_#56br&)v=da2kqf%+5!v*&ff$br%5w5q8*nv6yaylg-fu2&m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "spotistatspy.herokuapp.com"
+]
 
 
 # Application definition

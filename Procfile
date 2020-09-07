@@ -1,1 +1,2 @@
-web: gunicorn spotistats.wsgi
+release: ./release-tasks.sh
+web: gunicorn spotistats.wsgi --log-file -

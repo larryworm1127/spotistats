@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes, { number } from "prop-types";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import AssignmentIcon from "@material-ui/icons/Assignment";
-import Collapse from "@material-ui/core/Collapse";
-import { ExpandLess, ExpandMore } from "@material-ui/icons";
-import { withStyles } from "@material-ui/core";
-import { styles } from "./style";
+import React from 'react';
+import PropTypes, { number } from 'prop-types';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import Collapse from '@material-ui/core/Collapse';
+import { ExpandLess, ExpandMore } from '@material-ui/icons';
+import { withStyles } from '@material-ui/core';
+import { styles } from './style';
 
 
 class CollapseListItem extends React.Component {

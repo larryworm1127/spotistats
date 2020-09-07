@@ -1,9 +1,9 @@
 export const auth = (comp) => {
-  fetch("api/auth")
+  fetch('api/auth')
     .then(res => {
       if (res.status > 400) {
         return comp.setState(() => {
-          return { placeholder: "Something went wrong!" };
+          return { placeholder: 'Something went wrong!' };
         });
       }
       return res.json();

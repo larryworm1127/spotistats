@@ -1,45 +1,45 @@
-import React from "react";
-import { withStyles } from "@material-ui/core";
-import { styles } from "./style";
-import clsx from "clsx";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import Drawer from "@material-ui/core/Drawer";
-import Divider from "@material-ui/core/Divider";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
-import Link from "@material-ui/core/Link";
-import Badge from "@material-ui/core/Badge";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import BarChartIcon from "@material-ui/icons/BarChart";
-import TopArtists from "./TopArtists";
-import CollapseListItem from "./CollapseListItem";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import List from "@material-ui/core/List";
-import PeopleIcon from "@material-ui/icons/People";
-import TopTracks from "./TopTracks";
-import { getTopArtists, getTopTracks } from "../actions";
+import React from 'react';
+import { withStyles } from '@material-ui/core';
+import { styles } from './style';
+import clsx from 'clsx';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import Drawer from '@material-ui/core/Drawer';
+import Divider from '@material-ui/core/Divider';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
+import Badge from '@material-ui/core/Badge';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import BarChartIcon from '@material-ui/icons/BarChart';
+import TopArtists from './TopArtists';
+import CollapseListItem from './CollapseListItem';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import List from '@material-ui/core/List';
+import PeopleIcon from '@material-ui/icons/People';
+import TopTracks from './TopTracks';
+import { getTopArtists, getTopTracks } from '../actions';
 
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
+      {'Copyright © '}
       <Link color="inherit">
         Your Website
-      </Link>{" "}
+      </Link>{' '}
       {new Date().getFullYear()}
-      {"."}
+      {'.'}
     </Typography>
   );
 }
@@ -68,37 +68,37 @@ class Home extends React.Component {
   };
 
   getSubComponent = () => {
-    const { tracks, artists, selectedIndex, loaded } = this.state
+    const { tracks, artists, selectedIndex, loaded } = this.state;
 
     switch (selectedIndex) {
       case 1:
         if (!loaded) {
-          getTopArtists(this, "short_term");
+          getTopArtists(this, 'short_term');
         }
         return <TopArtists timeRange="Short Term" artists={artists}/>;
       case 2:
         if (!loaded) {
-          getTopArtists(this, "medium_term");
+          getTopArtists(this, 'medium_term');
         }
         return <TopArtists timeRange="Medium Term" artists={artists}/>;
       case 3:
         if (!loaded) {
-          getTopArtists(this, "long_term");
+          getTopArtists(this, 'long_term');
         }
         return <TopArtists timeRange="Long Term" artists={artists}/>;
       case 4:
         if (!loaded) {
-          getTopTracks(this, "short_term");
+          getTopTracks(this, 'short_term');
         }
         return <TopTracks timeRange="Short Term" tracks={tracks}/>;
       case 5:
         if (!loaded) {
-          getTopTracks(this, "medium_term");
+          getTopTracks(this, 'medium_term');
         }
         return <TopTracks timeRange="Medium Term" tracks={tracks}/>;
       case 6:
         if (!loaded) {
-          getTopTracks(this, "long_term");
+          getTopTracks(this, 'long_term');
         }
         return <TopTracks timeRange="Long Term" tracks={tracks}/>;
     }

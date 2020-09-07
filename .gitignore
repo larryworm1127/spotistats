@@ -329,4 +329,4 @@ dist
 
 
 .django_session
-frontend/static/frontend/main.js
+main.js

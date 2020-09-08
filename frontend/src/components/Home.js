@@ -77,43 +77,43 @@ class Home extends React.Component {
         if (!loaded) {
           getTopArtists(this, 'short_term');
         }
-        return <TopArtists timeRange="Short Term" artists={artists}/>;
+        return <TopArtists timeRange="Short Term" artists={artists} loaded={loaded}/>;
       case 2:
         if (!loaded) {
           getTopArtists(this, 'medium_term');
         }
-        return <TopArtists timeRange="Medium Term" artists={artists}/>;
+        return <TopArtists timeRange="Medium Term" artists={artists} loaded={loaded}/>;
       case 3:
         if (!loaded) {
           getTopArtists(this, 'long_term');
         }
-        return <TopArtists timeRange="Long Term" artists={artists}/>;
+        return <TopArtists timeRange="Long Term" artists={artists} loaded={loaded}/>;
       case 4:
         if (!loaded) {
           getTopTracks(this, 'short_term');
         }
-        return <TopTracks timeRange="Short Term" tracks={tracks}/>;
+        return <TopTracks timeRange="Short Term" tracks={tracks} loaded={loaded}/>;
       case 5:
         if (!loaded) {
           getTopTracks(this, 'medium_term');
         }
-        return <TopTracks timeRange="Medium Term" tracks={tracks}/>;
+        return <TopTracks timeRange="Medium Term" tracks={tracks} loaded={loaded}/>;
       case 6:
         if (!loaded) {
           getTopTracks(this, 'long_term');
         }
-        return <TopTracks timeRange="Long Term" tracks={tracks}/>;
+        return <TopTracks timeRange="Long Term" tracks={tracks} loaded={loaded}/>;
       default:
         if (!loaded) {
           getPlaylists(this);
         }
-        return <PlaylistsTable playlists={playlists}/>;
+        return <PlaylistsTable playlists={playlists} loaded={loaded}/>;
     }
   };
 
   render() {
     const { classes } = this.props;
-    const { open, selectedIndex } = this.state;
+    const { open, selectedIndex, loaded } = this.state;
 
     return (
       <div className={classes.root}>

@@ -6,18 +6,13 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
 import Title from './Title';
+import { millisToMinutesAndSeconds } from '../actions';
 
 
 class TopTracks extends React.Component {
 
-  millisToMinutesAndSeconds = (millis) => {
-    const minutes = Math.floor(millis / 60000);
-    const seconds = ((millis % 60000) / 1000).toFixed(0);
-    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-  };
-
   render() {
-    const { timeRange, tracks, useRank } = this.props;
+    const { timeRange, tracks } = this.props;
 
     return (
       <React.Fragment>
@@ -44,7 +39,7 @@ class TopTracks extends React.Component {
                   }, '')}
                 </TableCell>
                 <TableCell>{track.album.name}</TableCell>
-                <TableCell>{this.millisToMinutesAndSeconds(parseInt(track.duration_ms))}</TableCell>
+                <TableCell>{millisToMinutesAndSeconds(parseInt(track.duration_ms))}</TableCell>
                 <TableCell>{track.popularity}</TableCell>
               </TableRow>
             ))}
@@ -58,7 +53,6 @@ class TopTracks extends React.Component {
 TopTracks.propTypes = {
   timeRange: PropTypes.string.isRequired,
   tracks: PropTypes.array.isRequired,
-  useRank: PropTypes.bool
 };
 
 export default TopTracks;

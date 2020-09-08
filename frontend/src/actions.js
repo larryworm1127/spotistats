@@ -9,7 +9,6 @@ export const auth = (comp) => {
       return res.json();
     })
     .then(json => {
-      console.log(json);
       if (json) {
         comp.setState({
           name: json.name,
@@ -29,7 +28,6 @@ export const getTopArtists = (comp, timeRange) => {
       }
     })
     .then(json => {
-      console.log(json);
       if (json) {
         comp.setState({
           artists: [...json.items],
@@ -48,7 +46,6 @@ export const getTopTracks = (comp, timeRange) => {
       }
     })
     .then(json => {
-      console.log(json);
       if (json) {
         comp.setState({
           tracks: [...json.items],
@@ -60,18 +57,25 @@ export const getTopTracks = (comp, timeRange) => {
 
 
 export const getPlaylists = (comp) => {
-  fetch("api/playlists")
+  fetch('api/playlists')
     .then(res => {
       if (res.status === 200) {
-        return res.json()
+        return res.json();
       }
     })
     .then(json => {
       if (json) {
         comp.setState({
-          playlists: [...json.items],
+          playlists: [...json],
           loaded: true
-        })
+        });
       }
-    })
-}
+    });
+};
+
+
+export const millisToMinutesAndSeconds = (millis) => {
+  const minutes = Math.floor(millis / 60000);
+  const seconds = ((millis % 60000) / 1000).toFixed(0);
+  return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+};

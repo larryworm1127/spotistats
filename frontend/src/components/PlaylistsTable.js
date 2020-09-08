@@ -25,7 +25,7 @@ class PlaylistsTable extends React.Component {
             </TableHead>
             <TableBody>
               {playlists.map((playlist) => (
-                <PlaylistsTableRow playlist={playlist}/>
+                <PlaylistsTableRow playlist={playlist} key={playlist.id}/>
               ))}
             </TableBody>
           </Table>

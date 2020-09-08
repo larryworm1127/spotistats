@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
+import { millisToMinutesAndSeconds } from '../actions';
 
 
 class PlaylistsTableRow extends React.Component {
@@ -51,11 +52,29 @@ class PlaylistsTableRow extends React.Component {
                 <Table size="small" aria-label="purchases">
                   <TableHead>
                     <TableRow>
-
+                      <TableCell>Name</TableCell>
+                      <TableCell>Artist</TableCell>
+                      <TableCell>Album</TableCell>
+                      <TableCell>Date Added</TableCell>
+                      <TableCell>Duration</TableCell>
+                      <TableCell>Popularity</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-
+                    {playlist.track_lists.map((track) => (
+                      <TableRow key={track.name}>
+                        <TableCell>{track.name}</TableCell>
+                        <TableCell>
+                          {track.artists.reduce((acc, curr) => {
+                            return (acc === '') ? curr : `${acc}, ${curr}`;
+                          }, '')}
+                        </TableCell>
+                        <TableCell>{track.album}</TableCell>
+                        <TableCell>{new Date(track.added_at).toLocaleString()}</TableCell>
+                        <TableCell>{millisToMinutesAndSeconds(track.duration_ms)}</TableCell>
+                        <TableCell>{track.popularity}</TableCell>
+                      </TableRow>
+                    ))}
                   </TableBody>
                 </Table>
               </Box>

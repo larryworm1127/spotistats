@@ -98,4 +98,18 @@ def playlists(request):
     if not auth_manager.get_cached_token():
         return redirect('index')
     spotify = Spotify(auth_manager=auth_manager)
-    return Response(spotify.current_user_playlists())
+    user_playlists = spotify.current_user_playlists()
+    for playlist in user_playlists["items"]:
+        playlist_info = spotify.playlist(playlist["id"])
+        playlist["track_lists"] = []
+        for track in playlist_info["tracks"]["items"]:
+            playlist["track_lists"].append({
+                "added_at": track["added_at"],
+                "album": track["track"]["album"]["name"],
+                "artists": map(lambda x: x["name"], track["track"]["artists"]),
+                "name": track["track"]["name"],
+                "duration_ms": track["track"]["duration_ms"],
+                "popularity": track["track"]["popularity"]
+            })
+
+    return Response(user_playlists["items"])

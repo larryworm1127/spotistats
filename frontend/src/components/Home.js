@@ -14,10 +14,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
-import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import TopArtists from './TopArtists';
 import CollapseListItem from './CollapseListItem';
@@ -36,8 +34,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit">
-        Your Website
+      <Link color="inherit" href="https://larryworm1127.github.io/">
+        Larry Shi
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -135,11 +133,6 @@ class Home extends React.Component {
             <Link href="/api/sign_out" color="inherit">
               Sign Out
             </Link>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon/>
-              </Badge>
-            </IconButton>
           </Toolbar>
         </AppBar>
 

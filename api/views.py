@@ -100,9 +100,11 @@ def playlists(request):
     spotify = Spotify(auth_manager=auth_manager)
     user_playlists = spotify.current_user_playlists()
     for playlist in user_playlists["items"]:
+        playlist["duration"] = 0
         playlist_info = spotify.playlist_items(playlist["id"])
         playlist["track_lists"] = []
         for track in playlist_info["items"]:
+            playlist["duration"] += track["track"]["duration_ms"]
             playlist["track_lists"].append({
                 "added_at": track["added_at"],
                 "album": track["track"]["album"]["name"],

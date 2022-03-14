@@ -24,6 +24,7 @@ class PlaylistsTable extends React.Component {
                 <TableCell>Name</TableCell>
                 <TableCell>Public</TableCell>
                 <TableCell>Num Tracks</TableCell>
+                <TableCell>Duration</TableCell>
                 <TableCell>Collaborative</TableCell>
               </TableHead>
               <TableBody>

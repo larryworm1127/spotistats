@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
-import { millisToMinutesAndSeconds } from '../actions';
+import { millisToDisplayTime } from '../actions';
 
 
 class PlaylistsTableRow extends React.Component {
@@ -40,6 +40,7 @@ class PlaylistsTableRow extends React.Component {
           <TableCell>{playlist.name}</TableCell>
           <TableCell>{playlist.public.toString()}</TableCell>
           <TableCell>{playlist.tracks.total}</TableCell>
+          <TableCell>{millisToDisplayTime(playlist.duration)}</TableCell>
           <TableCell>{playlist.collaborative.toString()}</TableCell>
         </TableRow>
         <TableRow>
@@ -71,7 +72,7 @@ class PlaylistsTableRow extends React.Component {
                         </TableCell>
                         <TableCell>{track.album}</TableCell>
                         <TableCell>{new Date(track.added_at).toLocaleString()}</TableCell>
-                        <TableCell>{millisToMinutesAndSeconds(track.duration_ms)}</TableCell>
+                        <TableCell>{millisToDisplayTime(track.duration_ms)}</TableCell>
                         <TableCell>{track.popularity}</TableCell>
                       </TableRow>
                     ))}

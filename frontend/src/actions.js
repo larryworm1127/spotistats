@@ -74,8 +74,18 @@ export const getPlaylists = (comp) => {
 };
 
 
-export const millisToMinutesAndSeconds = (millis) => {
-  const minutes = Math.floor(millis / 60000);
-  const seconds = ((millis % 60000) / 1000).toFixed(0);
-  return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+export const millisToDisplayTime = (millis) => {
+  let hours = null;
+  if (millis > 3600000) {
+    hours = Math.floor(millis / 3600000);
+  }
+  const remain = (hours === null) ? millis : millis % 3600000;
+  const minutes = Math.floor(remain / 60000);
+  const seconds = ((remain % 60000) / 1000).toFixed(0);
+
+  if (hours === null) {
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+  } else {
+    return hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+  }
 };

@@ -6,7 +6,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
 import Title from './Title';
-import { millisToMinutesAndSeconds } from '../actions';
+import { millisToDisplayTime } from '../actions';
 import Loading from './Loading';
 
 
@@ -41,7 +41,7 @@ class TopTracks extends React.Component {
                     }, '')}
                   </TableCell>
                   <TableCell>{track.album.name}</TableCell>
-                  <TableCell>{millisToMinutesAndSeconds(parseInt(track.duration_ms))}</TableCell>
+                  <TableCell>{millisToDisplayTime(parseInt(track.duration_ms))}</TableCell>
                   <TableCell>{track.popularity}</TableCell>
                 </TableRow>
               ))}

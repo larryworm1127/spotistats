@@ -41,6 +41,7 @@ class PlaylistsTableRow extends React.Component {
           <TableCell>{playlist.public.toString()}</TableCell>
           <TableCell>{playlist.tracks.total}</TableCell>
           <TableCell>{millisToDisplayTime(playlist.duration)}</TableCell>
+          <TableCell>{millisToDisplayTime(playlist.average)}</TableCell>
           <TableCell>{playlist.collaborative.toString()}</TableCell>
         </TableRow>
         <TableRow>

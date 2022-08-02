@@ -103,15 +103,18 @@ def playlists(request):
         playlist["duration"] = 0
         playlist_info = spotify.playlist_items(playlist["id"])
         playlist["track_lists"] = []
-        for track in playlist_info["items"]:
-            playlist["duration"] += track["track"]["duration_ms"]
+        for item in playlist_info["items"]:
+            track = item["track"]
+            playlist["duration"] += track["duration_ms"]
             playlist["track_lists"].append({
-                "added_at": track["added_at"],
-                "album": track["track"]["album"]["name"],
-                "artists": map(lambda x: x["name"], track["track"]["artists"]),
-                "name": track["track"]["name"],
-                "duration_ms": track["track"]["duration_ms"],
-                "popularity": track["track"]["popularity"]
+                "added_at": item["added_at"],
+                "album": track["album"]["name"],
+                "artists": map(lambda x: x["name"], track["artists"]),
+                "name": track["name"],
+                "duration_ms": track["duration_ms"],
+                "popularity": track["popularity"]
             })
+
+        playlist["average"] = playlist["duration"] / playlist["tracks"]["total"]
 
     return Response(user_playlists["items"])

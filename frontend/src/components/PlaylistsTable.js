@@ -25,6 +25,7 @@ class PlaylistsTable extends React.Component {
                 <TableCell>Public</TableCell>
                 <TableCell>Num Tracks</TableCell>
                 <TableCell>Duration</TableCell>
+                <TableCell>Average Duration</TableCell>
                 <TableCell>Collaborative</TableCell>
               </TableHead>
               <TableBody>

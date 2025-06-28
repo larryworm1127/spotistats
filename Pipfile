@@ -6,8 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django = "*"
-spotipy = "*"
+django = "5.2.2"
+spotipy = "2.25.1"
 djangorestframework = "*"
 gunicorn = "*"
 django-heroku = "*"
